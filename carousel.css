@@ -1,0 +1,91 @@
+body,
+footer {
+  background-color: rgba(255, 200, 243, 0.3);
+}
+
+.carousel1 {
+  position: relative;
+  overflow: hidden;
+}
+
+.item {
+  float: left;
+}
+
+.carousel_container {
+  transition: transform 0.5s;
+  transform: translate3d(0, 0, 0);
+}
+
+.carousel_container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.carousel_next,
+.carousel_prev {
+  position: absolute;
+  width: 40px;
+  height: 80px;
+  top: 50%;
+  right: 0;
+  cursor: pointer;
+  opacity: 0.5;
+  background-color: rgba(88, 88, 88, 0.5);
+  transition: transform 0.3s;
+}
+
+.carousel_next:hover,
+.carousel_prev:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.carousel_prev {
+  right: 0;
+  left: 0;
+}
+
+.carousel_prev > span {
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0.15em 0.15em;
+  align-items: center;
+  color: white;
+}
+
+.carousel_next > span {
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0.15em 0.05em;
+  align-items: center;
+  color: white;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.indicator {
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 4px;
+  box-shadow: 0 2px 5px #000;
+  transition: transform 0.3s;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.indicator_active,
+.indicator:hover {
+  transform: scale(1.4);
+  opacity: 1;
+}
