@@ -1,2 +1,3 @@
 # Carousel
-Petit exercice d'application
+
+Exercice d'application pour m'entrainer sur javaScript.
