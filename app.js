@@ -22,11 +22,10 @@ class Carousel {
         });
     }
 
-    setStyle() {
-        
+    setStyle() {  
         let ratio = this.items.length / this.visible;
         this.container.style.width = (ratio * 100) + "%";
-        this.items.forEach((item) => item.style.width = ((100 / this.visible) / ratio) + "%");
+        this.items.forEach(item => item.style.width = ((100 / this.visible) / ratio) + "%");
     }
 
     nextItem() {
@@ -51,8 +50,7 @@ class Carousel {
             this.buttons.forEach(button => button.classList.remove('indicator_active'));
             activeButton.classList.add('indicator_active');
         }
-        this.currentItem = index;
-
+        this.currentItem = index
     }
 
     createPagination(numberSlide) {
@@ -65,7 +63,6 @@ class Carousel {
         };
         this.buttons[0].classList.add('indicator_active');
     }
-
 }
 
 const carousel = new Carousel(1);
