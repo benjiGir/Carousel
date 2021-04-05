@@ -13,12 +13,12 @@ class Carousel {
         
         this.next.addEventListener("click", (e) => {
             e.preventDefault()
-            carousel.next()
+            this.next()
         });
         
         this.prev.addEventListener("click", (e) => {
             e.preventDefault()
-            carousel.previous()
+            this.previous()
         });
     }
 
