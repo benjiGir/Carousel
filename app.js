@@ -1,7 +1,3 @@
-const next = document.querySelector(".carousel_next");
-const prev = document.querySelector(".carousel_prev");
-
-
 class Carousel {
     constructor (visible){
         this.visible = visible;
@@ -10,8 +6,20 @@ class Carousel {
         this.items = [].slice.call(this.container.children);
         this.indicators = document.querySelector('.indicators');
         this.buttons = [];
+        this.next = document.querySelector(".carousel_next");
+        this.prev = document.querySelector(".carousel_prev");
         this.setStyle();
-        this.createPagination(this.items.length); 
+        this.createPagination(this.items.length);
+        
+        this.next.addEventListener("click", (e) => {
+            e.preventDefault()
+            carousel.next()
+        });
+        
+        this.prev.addEventListener("click", (e) => {
+            e.preventDefault()
+            carousel.previous()
+        });
     }
 
     setStyle() {
@@ -57,17 +65,9 @@ class Carousel {
         };
         this.buttons[0].classList.add('indicator_active');
     }
+
 }
 
 const carousel = new Carousel(1);
 
 
-next.addEventListener("click", (e) => {
-    e.preventDefault()
-    carousel.next()
-});
-
-prev.addEventListener("click", (e) => {
-    e.preventDefault()
-    carousel.previous()
-});
