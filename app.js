@@ -13,12 +13,12 @@ class Carousel {
         
         this.next.addEventListener("click", (e) => {
             e.preventDefault()
-            this.next()
+            this.nextItem()
         });
         
         this.prev.addEventListener("click", (e) => {
             e.preventDefault()
-            this.previous()
+            this.previousItem()
         });
     }
 
@@ -29,11 +29,11 @@ class Carousel {
         this.items.forEach((item) => item.style.width = ((100 / this.visible) / ratio) + "%");
     }
 
-    next() {
+    nextItem() {
         this.goToItem(this.currentItem + 1);
     }
 
-    previous() {
+    previousItem() {
         this.goToItem(this.currentItem - 1);
     }
 
