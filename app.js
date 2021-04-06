@@ -3,47 +3,47 @@ class Carousel {
         this.visible = visible;
         this.currentItem = 0;
         this.container = document.querySelector('.carousel_container');
-        this.items = [].slice.call(this.container.children);
+        this.slides = [].slice.call(this.container.children);
         this.indicators = document.querySelector('.indicators');
         this.buttons = [];
         this.next = document.querySelector(".carousel_next");
         this.prev = document.querySelector(".carousel_prev");
         this.setStyle();
-        this.createPagination(this.items.length);
+        this.createPagination(this.slides.length);
         
         this.next.addEventListener("click", (e) => {
             e.preventDefault()
-            this.nextItem()
+            this.nextSlide()
         });
         
         this.prev.addEventListener("click", (e) => {
             e.preventDefault()
-            this.previousItem()
+            this.previousSlide()
         });
     }
 
     setStyle() {  
-        let ratio = this.items.length / this.visible;
+        let ratio = this.slides.length / this.visible;
         this.container.style.width = (ratio * 100) + "%";
-        this.items.forEach(item => item.style.width = ((100 / this.visible) / ratio) + "%");
+        this.slides.forEach(item => item.style.width = ((100 / this.visible) / ratio) + "%");
     }
 
-    nextItem() {
-        this.goToItem(this.currentItem + 1);
+    nextSlide() {
+        this.goToSlide(this.currentItem + 1);
     }
 
-    previousItem() {
-        this.goToItem(this.currentItem - 1);
+    previousSlide() {
+        this.goToSlide(this.currentItem - 1);
     }
 
-    goToItem(index) {
+    goToSlide(index) {
         if (index < 0) {
-            index = this.items.length - this.visible;
+            index = this.slides.length - this.visible;
         }
-        else if (index >= this.items.length || ((this.items[this.currentItem + this.visible] === undefined) && index > this.currentItem)) {
+        else if (index >= this.slides.length || ((this.slides[this.currentItem + this.visible] === undefined) && index > this.currentItem)) {
             index = 0;
         }
-        let translasteX = index * -100 / this.items.length;
+        let translasteX = index * -100 / this.slides.length;
         this.container.style.transform = 'translate3d(' + translasteX + '%, 0, 0)';
         let activeButton = this.buttons[Math.floor(index / this.visible)];
         if (activeButton) {
@@ -57,7 +57,7 @@ class Carousel {
         for (let i = 0 ; i < numberSlide ; i++) {
             let button = document.createElement("div");
             button.classList.add("indicator");
-            button.addEventListener('click', () => this.goToItem(i));
+            button.addEventListener('click', () => this.goToSlide(i));
             this.indicators.appendChild(button);
             this.buttons.push(button);
         };
