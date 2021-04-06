@@ -1,6 +1,6 @@
 class Carousel {
-    constructor (visible){
-        this.visible = visible;
+    constructor (slideToScroll){
+        this.slideToScroll = slideToScroll;
         this.currentItem = 0;
         this.container = document.querySelector('.carousel_container');
         this.slides = [].slice.call(this.container.children);
@@ -23,9 +23,9 @@ class Carousel {
     }
 
     setStyle() {  
-        let ratio = this.slides.length / this.visible;
+        let ratio = this.slides.length / this.slideToScroll;
         this.container.style.width = (ratio * 100) + "%";
-        this.slides.forEach(item => item.style.width = ((100 / this.visible) / ratio) + "%");
+        this.slides.forEach(item => item.style.width = ((100 / this.slideToScroll) / ratio) + "%");
     }
 
     nextSlide() {
@@ -38,14 +38,14 @@ class Carousel {
 
     goToSlide(index) {
         if (index < 0) {
-            index = this.slides.length - this.visible;
+            index = this.slides.length - this.slideToScroll;
         }
-        else if (index >= this.slides.length || ((this.slides[this.currentItem + this.visible] === undefined) && index > this.currentItem)) {
+        else if (index >= this.slides.length || ((this.slides[this.currentItem + this.slideToScroll] === undefined) && index > this.currentItem)) {
             index = 0;
         }
         let translasteX = index * -100 / this.slides.length;
         this.container.style.transform = 'translate3d(' + translasteX + '%, 0, 0)';
-        let activeButton = this.buttons[Math.floor(index / this.visible)];
+        let activeButton = this.buttons[Math.floor(index / this.slideToScroll)];
         if (activeButton) {
             this.buttons.forEach(button => button.classList.remove('indicator_active'));
             activeButton.classList.add('indicator_active');
@@ -53,8 +53,8 @@ class Carousel {
         this.currentItem = index
     }
 
-    createPagination(numberSlide) {
-        for (let i = 0 ; i < numberSlide ; i++) {
+    createPagination(numberOfSlide) {
+        for (let i = 0 ; i < numberOfSlide ; i++) {
             let button = document.createElement("div");
             button.classList.add("indicator");
             button.addEventListener('click', () => this.goToSlide(i));
